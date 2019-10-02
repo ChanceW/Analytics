@@ -2,7 +2,7 @@
 import { useEntityList } from "./hooks/useEntityList";
 import SeriesSelector from "./SeriesSelector";
 
-const ReportConfigurationReducer = (action) => {
+const reportConfigurationReducer = (action) => {
     let { type } = action;
     switch (type) {
         case "setEntityList":
@@ -15,8 +15,8 @@ const ReportConfigurationReducer = (action) => {
 };
 
 const ReportConfiguration = () => {
-    let [state, dispatch] = useReducer();
-    useEntityList(dispatch);
+    let [state, dispatch] = useReducer(reportConfigurationReducer, {});
+    //useEntityList(dispatch);
 
     return <SeriesSelector {...state}></SeriesSelector>;
 };

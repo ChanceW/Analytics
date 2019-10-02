@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace Analytics.Controllers
 {
@@ -24,15 +25,19 @@ namespace Analytics.Controllers
         [HttpGet("[action]")]
         public string Entities()
         {
-            string cmdText = "SELECT * FROM [Profisee].[meta].[tEntity]";
+            string cmdText = "SELECT Id, Name FROM [Profisee].[meta].[tEntity]";
             var data = DataAccess.SqlHelper.ExecuteDataTableSqlDA(connectionString, cmdText);
-            return "Hello World";
+            var entities = data.Tables[0];
+            return JsonConvert.SerializeObject(entities.Rows); ;
         }
 
         [HttpGet("[action]")]
         public string Attributes()
         {
-            return "Hello World";
+            string cmdText = "select Attribute_ID, Attribute_Name, Entity_ID, Attribute_DBAEntity_ID, Attribute_DBAEntity_Name from meta.vRepo_viw_SYSTEM_SCHEMA_ATTRIBUTES a where a.Attribute_DBAEntity_ID is not null";
+            var data = DataAccess.SqlHelper.ExecuteDataTableSqlDA(connectionString, cmdText);
+            var entities = data.Tables[0];
+            return JsonConvert.SerializeObject(entities.Rows);
         }
     }
 }
