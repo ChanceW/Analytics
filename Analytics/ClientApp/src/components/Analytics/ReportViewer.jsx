@@ -1,7 +1,9 @@
 ﻿import React from "react";
+import Highcharts from "highcharts";
+import { useHighchart } from "./hooks/useHighchart";
 
-const ReportViewer = () => {
-
+const ReportViewer = ({ entity, attribute }) => {
+    useHighchart();
 };
 
 export default ReportViewer;
