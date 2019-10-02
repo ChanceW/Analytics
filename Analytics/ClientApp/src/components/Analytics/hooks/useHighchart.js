@@ -41,9 +41,9 @@ const yAxis = (title) => {
 
 const series = (valueCountPairs) => {
     return {
-        series: valueCountPairs.map(vcp => {
+        series: valueCountPairs && valueCountPairs.length ? valueCountPairs.map(vcp => {
             return { name: vcp.name, count: vcp.count }
-        })
+        }) : []
     };
 };
 
