@@ -28,7 +28,7 @@ namespace Analytics.Controllers
             string cmdText = "SELECT Id, Name FROM [Profisee].[meta].[tEntity]";
             var data = DataAccess.SqlHelper.ExecuteDataTableSqlDA(connectionString, cmdText);
             var entities = data.Tables[0];
-            return JsonConvert.SerializeObject(entities.Rows); ;
+            return JsonConvert.SerializeObject(entities); ;
         }
 
         [HttpGet("[action]")]
@@ -37,7 +37,7 @@ namespace Analytics.Controllers
             string cmdText = "select Attribute_ID, Attribute_Name, Entity_ID, Attribute_DBAEntity_ID, Attribute_DBAEntity_Name from meta.vRepo_viw_SYSTEM_SCHEMA_ATTRIBUTES a where a.Attribute_DBAEntity_ID is not null";
             var data = DataAccess.SqlHelper.ExecuteDataTableSqlDA(connectionString, cmdText);
             var entities = data.Tables[0];
-            return JsonConvert.SerializeObject(entities.Rows);
+            return JsonConvert.SerializeObject(entities);
         }
     }
 }

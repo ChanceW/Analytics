@@ -2,7 +2,7 @@
 
 class BaseClient {
     constructor(options) {
-        this.baseUrl = "http://localhost/api" + options.url;
+        this.baseUrl = "/api/" + options.url;
     }
 
     getJSON(route, query) {

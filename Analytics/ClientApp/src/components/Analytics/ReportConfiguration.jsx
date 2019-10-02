@@ -1,4 +1,4 @@
-﻿import React, { useReducer } from "react";
+﻿import React, { useReducer, useState } from "react";
 import { useEntityList } from "./hooks/useEntityList";
 import SeriesSelector from "./SeriesSelector";
 
@@ -8,7 +8,7 @@ const reportConfigurationReducer = (state, action) => {
         case "setEntityList":
             return { entities: action.value };
         case "setAttributeList":
-            break;
+            return { attributes: action.value };
         default:
             break;
     }
@@ -16,7 +16,8 @@ const reportConfigurationReducer = (state, action) => {
 
 const ReportConfiguration = () => {
     let [state, dispatch] = useReducer(reportConfigurationReducer, { entities: [] });
-    useEntityList(dispatch, state.entities);
+    let [entitiesLoad, setEntitiesLoaded] = useState([]);
+    useEntityList(dispatch, setEntitiesLoaded, entitiesLoad);
 
     return <SeriesSelector {...state}></SeriesSelector>;
 };

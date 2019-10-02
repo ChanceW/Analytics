@@ -6,11 +6,11 @@ class AnalyticsClient {
     }
 
     getEntityList() {
-        this.client.getJSON("meta/entities");
+        return this.client.getJSON("meta/entities");
     }
 
     getAttributesList() {
-        this.client.getJSON("meta/attributes");
+        return this.client.getJSON("meta/attributes");
     }
 }
 

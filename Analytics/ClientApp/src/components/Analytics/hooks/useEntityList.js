@@ -1,11 +1,14 @@
 ﻿import { useState, useEffect } from "react";
 import AnalyticsClient from "../../../Clients/AnalyticsClient";
 
-export const useEntityList = (setEntityList, entities) => {
+export const useEntityList = (setEntityList, setentitiesLoaded, entitiesLoad) => {
     let [client] = useState(new AnalyticsClient());
     useEffect(() => {
-        setEntityList({ type: "setEntityList", value: client.getEntityList() });
+        client.getEntityList().then((data) => {
+            setEntityList({ type: "setEntityList", value: data });
+            setentitiesLoaded(true);
+        });  
     },
-        [entities]
+        [entitiesLoad]
     );
 };
