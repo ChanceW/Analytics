@@ -1,0 +1,15 @@
+﻿.main {
+    display: grid;
+    grid-template-columns: 25% 75%;
+}
+
+.left{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    border-right: 2px solid black;
+}
+
+.right {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
