@@ -20,8 +20,8 @@ const staticOptions = {
 const xAxis = (title, fieldValues) => {
     return {
         xAxis: {
-            categories: fieldValues.length
-                ? fieldValues.map(fv => fv.name) 
+            categories: fieldValues && fieldValues.length
+                ? fieldValues[0].map(fv => fv.name) 
                 : "placeholder",
             title: title
         }
@@ -41,27 +41,26 @@ const yAxis = (title) => {
 
 const series = (valueCountPairs) => {
     return {
-        series: valueCountPairs && valueCountPairs.length ? valueCountPairs.map(vcp => {
-            return { name: vcp.name, count: vcp.count }
+        series: valueCountPairs && valueCountPairs.length ? valueCountPairs[0].map(vcp => {
+            return { name: vcp.name, data: [vcp.count] }
         }) : []
     };
 };
 
-const getSeriesAndAxisProperties = (chartProperties, valueCountPairs) => {
-    let { title, fieldValues } = chartProperties;
+const getSeriesAndAxisProperties = (valueCountPairs, title) => {
     return {
         ...yAxis(title),
-        ...xAxis(title, fieldValues),
+        ...xAxis(title, valueCountPairs),
         ...series(valueCountPairs)
     }
 };
 
-export const useHighchart = (targetId , chartProperties, valueCountPairs) => {
+export const useHighchart = (targetId, valueCountPairs, title = "test") => {
     useEffect(() => {
         Highcharts.chart(targetId, {
             ...staticOptions,
-            ...getSeriesAndAxisProperties(chartProperties, valueCountPairs)
+            ...getSeriesAndAxisProperties(valueCountPairs, title)
         }),
-            [chartProperties]
-    });
+            [valueCountPairs]
+    }); 
 };
