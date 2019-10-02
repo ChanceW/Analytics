@@ -1,18 +1,18 @@
 ﻿import React from "react";
 import css from "./SeriesSelector.css";
 
-//function getEnitiesElements(entities) {
-//    return entities.map({
-//        return <li></li>
-//    })
-//}
+function getEnitiesElements(entities) {
+    return entities.map((entity) => {
+        return <option>{entity.Name}</option>;
+    })
+}
 
 const SeriesSelector = ({ entities, attributes }) => {
     return (
         <div>
-            <span>{"hello"}</span>
-            <select />
-            <select />
+            <span>Count</span>
+            <select>{getEnitiesElements(entities)}</select>
+            <select disabled={true} />
         </div>
     );
 };
