@@ -14,6 +14,7 @@ const ReportConfigurationReducer = (action) => {
 
 const ReportConfiguration = () => {
     let [state, dispatch] = useReducer();
+    return <div></div>;
 };
 
 export default ReportConfiguration;
