@@ -21,12 +21,35 @@ namespace Analytics.Controllers
             connectionString = Configuration["ConnectionStrings:DefaultConnection"];
         }
 
-        [HttpGet("[action]={entityName}")]
+        [HttpGet("[action]/{entityName}")]
         public IActionResult GetMembers(string entityName)
         {
-            var sql = $"SELECT * FROM data.t{entityName ?? "Customer"}";
+            var sql = $"SELECT * FROM data.t{entityName}";
             var data = DataAccess.SqlHelper.ExecuteDataTableSqlDA(connectionString, sql);
+            //HttpContext.Current.Request.Form["Attributes"];
             return Json(data.Tables.Count > 0 ? data.Tables[0] : null);
+        }
+
+        [HttpGet("[action]/{entity}")]
+        public IActionResult GetSeries(string entity, [FromQuery(Name = "attributes")] List<string> attributes)
+        {
+            var sql = string.Empty;
+            var data = new List<System.Data.DataTable>();
+            //System.Data.DataSet data = new System.Data.DataSet();
+            
+            foreach(var attribute in attributes)
+            {
+                sql = $@"SELECT E.[{attribute}.Name] AS [Name]
+                        ,COUNT(0) AS [Count] 
+                        FROM data.v{entity} E
+                        GROUP BY [{attribute}.Name]";
+                var result = DataAccess.SqlHelper.ExecuteDataTableSqlDA(connectionString, sql);
+                if(result != null && result.Tables.Count > 0)
+                {
+                    data.Add(result.Tables[0]);
+                }             
+            }
+            return Json(data);
         }
 
         // GET: /<controller>/

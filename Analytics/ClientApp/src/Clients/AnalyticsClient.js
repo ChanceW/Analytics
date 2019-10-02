@@ -2,15 +2,15 @@
 
 class AnalyticsClient {
     constructor() {
-        this.client = new BaseClient({ url: `/meta/` });
+        this.client = new BaseClient({ url: `` });
     }
 
     getEntityList() {
-        //return this.client.getJSON(`entities/`);
-        return [
-            { Name: "product" },
-            { name: "customer" }
-        ];
+        this.client.getJSON("meta/entities");
+    }
+
+    getAttributesList() {
+        this.client.getJSON("meta/attributes");
     }
 }
 
