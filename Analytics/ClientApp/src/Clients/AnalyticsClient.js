@@ -12,6 +12,10 @@ class AnalyticsClient {
     getAttributesList() {
         return this.client.getJSON("meta/attributes");
     }
+
+    getSeries(entityName, attributeName) {
+        return this.client.getJSON(`memberdata/getSeries/${entityName}/`, { attributes: attributeName });
+    }
 }
 
 export default AnalyticsClient;
