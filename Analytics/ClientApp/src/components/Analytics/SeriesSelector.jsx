@@ -8,19 +8,26 @@ function getEnitiesElements(entities) {
     })
 }
 
-function getAttributeElements(attributes) {
-    return attributes ? attributes.map((attribute, idx) => {
+function getAttributeElements(selectedEntity, attributes) {
+    if (!attributes) {
+        return [];
+    }
+
+    const attrs = attributes.filter((attr) => {
+        return attr.Entity_Name === selectedEntity;
+    });
+    return attrs.map((attribute, idx) => {
         return <option key={idx}>{attribute.Attribute_Name}</option>;
-    }) : [];
+    });
 }
 
 const reportConfigurationReducer = (state, action) => {
     let { type } = action;
     switch (type) {
         case "setEntitySelected":
-            return { selectedEntity: action.value };
+            return { ...state, selectedEntity: action.value };
         case "setAttributeList":
-            return { attributes: action.value };
+            return { ...state, attributes: action.value };
         default:
             break;
     }
@@ -41,7 +48,7 @@ const SeriesSelector = ({ entities }) => {
             >
                 {getEnitiesElements(entities)}
             </select>
-            <select>{getAttributeElements(state.attributes)}</select>
+            <select>{getAttributeElements(state.selectedEntity, state.attributes)}</select>
         </div>
     );
 };

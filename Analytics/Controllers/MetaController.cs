@@ -34,7 +34,7 @@ namespace Analytics.Controllers
         [HttpGet("[action]")]
         public string Attributes()
         {
-            string cmdText = "select Attribute_ID, Attribute_Name, Entity_ID, Attribute_DBAEntity_ID, Attribute_DBAEntity_Name from meta.vRepo_viw_SYSTEM_SCHEMA_ATTRIBUTES a where a.Attribute_DBAEntity_ID is not null";
+            string cmdText = "select Attribute_ID, Attribute_Name, Entity_ID, Entity_Name, Attribute_DBAEntity_ID, Attribute_DBAEntity_Name from meta.vRepo_viw_SYSTEM_SCHEMA_ATTRIBUTES a where a.Attribute_DBAEntity_ID is not null";
             var data = DataAccess.SqlHelper.ExecuteDataTableSqlDA(connectionString, cmdText);
             var entities = data.Tables[0];
             return JsonConvert.SerializeObject(entities);
