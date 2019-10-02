@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import css from "./AnalticsView.css";
+import css from "./AnalyticsView.css";
 import ReportConfiguration from "./ReportConfiguration";
 import ReportViewer from "./ReportViewer";
 

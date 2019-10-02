@@ -1,4 +1,4 @@
-﻿import BaseClient from "./baseClient";
+﻿import BaseClient from "./BaseClient";
 
 class AnalyticsClient {
     constructor() {

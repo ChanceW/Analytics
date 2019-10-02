@@ -6,7 +6,7 @@ const staticOptions = {
         type: 'bar'
     },
     title: {
-        text: 'Historic World Population by Region'
+        text: 'Hackathon Chart'
     },
     plotOptions: {
         bar: {
@@ -39,15 +39,28 @@ const yAxis = (title) => {
     };
 };
 
-const getSeriesProperties = (chartProperties) => {
-
+const series = (valueCountPairs) => {
+    return {
+        series: valueCountPairs.map(vcp => {
+            return { name: vcp.name, count: vcp.count }
+        })
+    };
 };
 
-const useHighchart = (targetId , chartProperties) => {
+const getSeriesAndAxisProperties = (chartProperties, valueCountPairs) => {
+    let { title, fieldValues } = chartProperties;
+    return {
+        ...yAxis(title),
+        ...xAxis(title, fieldValues),
+        ...series(valueCountPairs)
+    }
+};
+
+export const useHighchart = (targetId , chartProperties, valueCountPairs) => {
     useEffect(() => {
-        Highcharts.chart({
+        Highcharts.chart(targetId, {
             ...staticOptions,
-            ...getSeriesProperties(chartProperties)
+            ...getSeriesAndAxisProperties(chartProperties, valueCountPairs)
         }),
             [chartProperties]
     });

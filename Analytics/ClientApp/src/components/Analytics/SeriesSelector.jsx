@@ -1,7 +1,7 @@
 ﻿import React from "react";
-import css from "SeriesSelector";
+import css from "./SeriesSelector.css";
 
-const SeriesSelector = ({ entities }) => {
+const SeriesSelector = ({ entities, label }) => {
     return (
         <div>
             <span>{label}</span>
