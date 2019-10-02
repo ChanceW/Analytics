@@ -16,7 +16,7 @@ const reportConfigurationReducer = (action) => {
 
 const ReportConfiguration = () => {
     let [state, dispatch] = useReducer(reportConfigurationReducer, {});
-    //useEntityList(dispatch);
+    useEntityList(dispatch);
 
     return <SeriesSelector {...state}></SeriesSelector>;
 };
