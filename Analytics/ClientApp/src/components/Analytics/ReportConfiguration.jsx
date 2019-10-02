@@ -7,8 +7,6 @@ const reportConfigurationReducer = (state, action) => {
     switch (type) {
         case "setEntityList":
             return { entities: action.value };
-        case "setAttributeList":
-            return { attributes: action.value };
         default:
             break;
     }

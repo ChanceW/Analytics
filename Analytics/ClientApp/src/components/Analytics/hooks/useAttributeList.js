@@ -1,8 +1,14 @@
-﻿import { useState } from "react";
+﻿import { useState, useEffect } from "react";
 import AnalyticsClient from "../../../Clients/AnalyticsClient";
 
-export const useAttributeList = ({ setAttributeList }) => {
+export const useAttributeList = (setAttributeList, entitySelected) => {
     let [client] = useState(new AnalyticsClient());
 
-    return setAttributeList({ type: "setAttributeList", value: client.getAttributeList() });
+    useEffect(() => {
+        client.getAttributesList().then((data) => {
+            setAttributeList({ type: "setAttributeList", value: data });
+        });
+    },
+        [entitySelected]
+    );
 };

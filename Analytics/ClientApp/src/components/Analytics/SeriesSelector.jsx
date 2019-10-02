@@ -1,18 +1,47 @@
-﻿import React from "react";
+﻿import React, { useReducer, useState } from "react";
+import { useAttributeList } from "./hooks/useAttributeList";
 import css from "./SeriesSelector.css";
 
 function getEnitiesElements(entities) {
-    return entities.map((entity) => {
-        return <option>{entity.Name}</option>;
+    return entities.map((entity, idx) => {
+        return <option key={idx}>{entity.Name}</option>;
     })
 }
 
-const SeriesSelector = ({ entities, attributes }) => {
+function getAttributeElements(attributes) {
+    return attributes ? attributes.map((attribute, idx) => {
+        return <option key={idx}>{attribute.Attribute_Name}</option>;
+    }) : [];
+}
+
+const reportConfigurationReducer = (state, action) => {
+    let { type } = action;
+    switch (type) {
+        case "setEntitySelected":
+            return { selectedEntity: action.value };
+        case "setAttributeList":
+            return { attributes: action.value };
+        default:
+            break;
+    }
+};
+
+const SeriesSelector = ({ entities }) => {
+    let [state, dispatch] = useReducer(reportConfigurationReducer, { attributes: [], selectedEntity: "" });
+    useAttributeList(dispatch, state.selectedEntity);
+
     return (
-        <div>
+        <div className={css.main}>
             <span>Count</span>
-            <select>{getEnitiesElements(entities)}</select>
-            <select disabled={true} />
+            <select
+                onChange={(sel) => dispatch({
+                    type: "setEntitySelected", value: sel.target.selectedOptions[0].value
+                })}
+                value={state.selectedEntity}
+            >
+                {getEnitiesElements(entities)}
+            </select>
+            <select>{getAttributeElements(state.attributes)}</select>
         </div>
     );
 };
