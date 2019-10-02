@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Analytics.Controllers
 {
+    [Route("api/[controller]")]
     public class MemberdataController : Controller
     {
         public IConfiguration Configuration { get; }
@@ -20,11 +21,12 @@ namespace Analytics.Controllers
             connectionString = Configuration["ConnectionStrings:DefaultConnection"];
         }
 
+        [HttpGet("[action]={entityName}")]
         public IActionResult GetMembers(string entityName)
         {
-            var sql = $"SELECT * FROM data.t{entityName}";
+            var sql = $"SELECT * FROM data.t{entityName ?? "Customer"}";
             var data = DataAccess.SqlHelper.ExecuteDataTableSqlDA(connectionString, sql);
-            return Json(data);
+            return Json(data.Tables.Count > 0 ? data.Tables[0] : null);
         }
 
         // GET: /<controller>/
