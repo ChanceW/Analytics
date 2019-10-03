@@ -3,14 +3,6 @@ import { useHighchart } from "./hooks/useHighchart";
 import AnalyticsClient from "../../Clients/AnalyticsClient";
 
 const ReportViewer = ({ selectedEntity, selectedAttribute, chartType, title }) => {
-    if (!selectedEntity) {
-        selectedEntity = "product";
-    }
-
-    if (!selectedAttribute) {
-        selectedAttribute = "color";
-    }
-
     let [client] = useState(new AnalyticsClient());
     let [series, setSeries] = useState();
     useMemo(() => {
