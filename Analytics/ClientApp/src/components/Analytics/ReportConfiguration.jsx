@@ -1,6 +1,7 @@
 ﻿import React, { useReducer, useState } from "react";
 import { useEntityList } from "./hooks/useEntityList";
 import SeriesSelector from "./SeriesSelector";
+import ChartSelector from "./ChartSelector";
 
 const reportConfigurationReducer = (state, action) => {
     let { type } = action;
@@ -27,6 +28,7 @@ const ReportConfiguration = ({ setSeries }) => {
         <div>
             <span onClick={() => { setSeries(state) }} className="loadRpt btn glyphicon glyphicon-dashboard" />
             <SeriesSelector {...state} dispatch={dispatch} />
+            <ChartSelector />
         </div>
     );
 };

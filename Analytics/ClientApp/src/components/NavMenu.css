@@ -4,8 +4,14 @@
   word-break: break-all;
 }
 
+.header {
+    background-color: #00a694;
+    font-weight:bold;
+}
+
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 @media (min-width: 768px) {
   html {

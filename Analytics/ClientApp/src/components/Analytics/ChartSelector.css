@@ -1,0 +1,12 @@
+﻿.chartSelect {
+    margin-top: 25px;
+}
+
+.chartSelect img{
+    width: 200px;
+}
+
+.charts {
+    height: 500px;
+    overflow: auto;
+}

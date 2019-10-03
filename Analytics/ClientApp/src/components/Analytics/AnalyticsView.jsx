@@ -1,5 +1,5 @@
 ﻿import React, { useState } from "react";
-import css from "./AnalyticsView.css";
+import "./AnalyticsView.css";
 import ReportConfiguration from "./ReportConfiguration";
 import ReportViewer from "./ReportViewer";
 
