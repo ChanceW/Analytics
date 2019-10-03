@@ -1,5 +1,5 @@
 ﻿.main {
-    display: grid;
+    display: flex;
     grid-template-columns: 25% 75%;
 }
 

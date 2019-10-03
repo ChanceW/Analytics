@@ -7,9 +7,13 @@ const AnalyticsView = (props) => {
     let [chartConfig, setChartConfig] = useState();
 
     return (
-        <div className={css.main}>
-            <ReportConfiguration setSeries={setChartConfig} className={css.left} />
-            <ReportViewer {...chartConfig} className={css.right} />
+        <div className="main">
+            <div className="left">
+                <ReportConfiguration setSeries={setChartConfig} />
+            </div>
+            <div className="right">
+                <ReportViewer {...chartConfig} />
+            </div>
         </div>
     );
 };

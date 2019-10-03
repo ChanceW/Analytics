@@ -25,8 +25,7 @@ const SeriesSelector = ({ dispatch, entities, selectedEntity, attributes, select
     useAttributeList(dispatch, selectedEntity);
 
     return (
-        <div className={css.main}>
-            <span>Count</span>
+        <div className="main">
             <select
                 onChange={(sel) => dispatch({
                     type: "setEntitySelected", value: sel.target.selectedOptions[0].value
