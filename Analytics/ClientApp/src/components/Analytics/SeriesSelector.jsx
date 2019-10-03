@@ -21,21 +21,8 @@ function getAttributeElements(selectedEntity, attributes) {
     });
 }
 
-const reportConfigurationReducer = (state, action) => {
-    let { type } = action;
-    switch (type) {
-        case "setEntitySelected":
-            return { ...state, selectedEntity: action.value };
-        case "setAttributeList":
-            return { ...state, attributes: action.value };
-        default:
-            break;
-    }
-};
-
-const SeriesSelector = ({ entities }) => {
-    let [state, dispatch] = useReducer(reportConfigurationReducer, { attributes: [], selectedEntity: "" });
-    useAttributeList(dispatch, state.selectedEntity);
+const SeriesSelector = ({ dispatch, entities, selectedEntity, attributes, selectedAttribute }) => {
+    useAttributeList(dispatch, selectedEntity);
 
     return (
         <div className={css.main}>
@@ -44,11 +31,20 @@ const SeriesSelector = ({ entities }) => {
                 onChange={(sel) => dispatch({
                     type: "setEntitySelected", value: sel.target.selectedOptions[0].value
                 })}
-                value={state.selectedEntity}
-            >
-                {getEnitiesElements(entities)}
+                value={selectedEntity} >
+                {
+                    getEnitiesElements(entities)
+                }
             </select>
-            <select>{getAttributeElements(state.selectedEntity, state.attributes)}</select>
+            <select
+                onChange={(sel) => dispatch({
+                    type: "setSelectedAttribute", value: sel.target.selectedOptions[0].value
+                })}
+                value={selectedAttribute} >
+                {
+                    getAttributeElements(selectedEntity, attributes)
+                }
+            </select>
         </div>
     );
 };

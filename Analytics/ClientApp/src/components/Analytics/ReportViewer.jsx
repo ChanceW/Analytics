@@ -2,22 +2,22 @@
 import { useHighchart } from "./hooks/useHighchart";
 import AnalyticsClient from "../../Clients/AnalyticsClient";
 
-const ReportViewer = ({ entity, attribute, title }) => {
-    if (!entity) {
-        entity = "product";
+const ReportViewer = ({ selectedEntity, selectedAttribute, title }) => {
+    if (!selectedEntity) {
+        selectedEntity = "product";
     }
 
-    if (!attribute) {
-        attribute = "color";
+    if (!selectedAttribute) {
+        selectedAttribute = "color";
     }
 
     let [client] = useState(new AnalyticsClient());
     let [series, setSeries] = useState();
     useMemo(() => {
-        client.getSeries(entity, attribute).then((series) => {
+        client.getSeries(selectedEntity, selectedAttribute).then((series) => {
             setSeries(series);
         });
-    }, [entity, attribute]);
+    }, [selectedEntity, selectedAttribute]);
 
     useHighchart("target", series, title);
 
