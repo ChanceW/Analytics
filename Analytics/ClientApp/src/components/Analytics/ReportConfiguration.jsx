@@ -25,9 +25,7 @@ const ReportConfiguration = ({ setSeries }) => {
 
     return (
         <div>
-            <button typ={"button"} onClick={() => { setSeries(state) }} >
-                Load Report
-            </button>
+            <span onClick={() => { setSeries(state) }} className="loadRpt btn glyphicon glyphicon-dashboard" />
             <SeriesSelector {...state} dispatch={dispatch} />
         </div>
     );

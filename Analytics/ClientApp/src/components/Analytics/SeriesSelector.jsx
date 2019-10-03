@@ -26,7 +26,7 @@ const SeriesSelector = ({ dispatch, entities, selectedEntity, attributes, select
 
     return (
         <div className="main">
-            <select
+            <select className="form-control"
                 onChange={(sel) => dispatch({
                     type: "setEntitySelected", value: sel.target.selectedOptions[0].value
                 })}
@@ -35,7 +35,7 @@ const SeriesSelector = ({ dispatch, entities, selectedEntity, attributes, select
                     getEnitiesElements(entities)
                 }
             </select>
-            <select
+            <select className="form-control"
                 onChange={(sel) => dispatch({
                     type: "setSelectedAttribute", value: sel.target.selectedOptions[0].value
                 })}
