@@ -6,6 +6,9 @@ import pyramidPng from "../../Images/pyramid.png";
 import areaPng from "../../Images/area.png";
 import axesPng from "../../Images/axes.png";
 import stackPng from "../../Images/stack.png";
+import streamPng from "../../Images/stream.png";
+import donutPng from "../../Images/donut.png";
+import comboPng from "../../Images/combo.png";
 
 
 const ChartSelector = ({ dispatch }) => {
@@ -18,7 +21,10 @@ const ChartSelector = ({ dispatch }) => {
                 <input type="radio" onChange={(event) => dispatch({type:"setChartType", value: event.target.value })} name="chart" value="pyramid" /><img src={pyramidPng} alt="Pyramid" /><br />
                 <input type="radio" onChange={(event) => dispatch({type:"setChartType", value: event.target.value })} name="chart" value="bar" /><img src={areaPng} alt="area" /><br />
                 <input type="radio" onChange={(event) => dispatch({type:"setChartType", value: event.target.value })} name="chart" value="bar" /><img src={axesPng} alt="axes" /><br />
-                <input type="radio" onChange={(event) => dispatch({type:"setChartType", value: event.target.value })} name="chart" value="bar" /><img src={stackPng} alt="stack" /><br />
+                <input type="radio" onChange={(event) => dispatch({ type: "setChartType", value: event.target.value })} name="chart" value="bar" /><img src={stackPng} alt="stack" /><br />
+                <input type="radio" onChange={(event) => dispatch({ type: "setChartType", value: event.target.value })} name="chart" value="bar" /><img src={streamPng} alt="stack" /><br />
+                <input type="radio" onChange={(event) => dispatch({ type: "setChartType", value: event.target.value })} name="chart" value="bar" /><img src={donutPng} alt="stack" /><br />
+                <input type="radio" onChange={(event) => dispatch({ type: "setChartType", value: event.target.value })} name="chart" value="bar" /><img src={comboPng} alt="stack" /><br />
             </div>
         </div>
     );

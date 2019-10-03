@@ -8,6 +8,7 @@
     grid-column-end: 2;
     border-right: 2px solid black;
     margin-right: 200px;
+    height: 100%
 }
 
 .right {
