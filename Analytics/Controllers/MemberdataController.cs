@@ -39,10 +39,10 @@ namespace Analytics.Controllers
             
             foreach(var attribute in attributes)
             {
-                sql = $@"SELECT E.[{attribute}.Name] AS [Name]
+                sql = $@"SELECT E.[{attribute}] AS [Code]
                         ,COUNT(0) AS [Count] 
                         FROM data.v{entity} E
-                        GROUP BY [{attribute}.Name]";
+                        GROUP BY [{attribute}]";
                 var result = DataAccess.SqlHelper.ExecuteDataTableSqlDA(connectionString, sql);
                 if(result != null && result.Tables.Count > 0)
                 {
