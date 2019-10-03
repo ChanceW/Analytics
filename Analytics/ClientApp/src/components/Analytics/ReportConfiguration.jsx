@@ -14,6 +14,8 @@ const reportConfigurationReducer = (state, action) => {
             return { ...state, attributes: action.value };
         case "setSelectedAttribute":
             return { ...state, selectedAttribute: action.value };
+        case "setChartType":
+            return { ...state, chartType: action.value };
         default:
             break;
     }
@@ -26,9 +28,9 @@ const ReportConfiguration = ({ setSeries }) => {
 
     return (
         <div>
-            <span onClick={() => { setSeries(state) }} className="loadRpt btn glyphicon glyphicon-dashboard" />
+            <span onClick={() => { setSeries(state) }} className="loadRpt btn glyphicon glyphicon-stats" />
             <SeriesSelector {...state} dispatch={dispatch} />
-            <ChartSelector />
+            <ChartSelector dispatch={dispatch} />
         </div>
     );
 };
