@@ -2,7 +2,7 @@
 import { useHighchart } from "./hooks/useHighchart";
 import AnalyticsClient from "../../Clients/AnalyticsClient";
 
-const ReportViewer = ({ selectedEntity, selectedAttribute, title }) => {
+const ReportViewer = ({ selectedEntity, selectedAttribute, chartType, title }) => {
     if (!selectedEntity) {
         selectedEntity = "product";
     }
@@ -19,9 +19,9 @@ const ReportViewer = ({ selectedEntity, selectedAttribute, title }) => {
         });
     }, [selectedEntity, selectedAttribute]);
 
-    useHighchart("target", series, title);
+    useHighchart("target", series, chartType || "pie", title);
 
-    return <div id={"target"} />;
+    return <div id={"target"} style={{height: "100%"}}/>;
 };
 
 export default ReportViewer;

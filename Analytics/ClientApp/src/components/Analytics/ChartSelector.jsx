@@ -13,7 +13,7 @@ const ChartSelector = ({ dispatch }) => {
         <div className="chartSelect">
             <div>Choose Chart Type: </div>
             <div className="charts">
-                <input type="radio" onChange={(event) => dispatch({type:"setChartType", value: event.target.value })} name="chart" value="bar" /><img src={barPng} alt="Bar"/><br />
+                <input type="radio" onChange={(event) => dispatch({type:"setChartType", value: event.target.value })} name="chart" value="column" /><img src={barPng} alt="Bar"/><br />
                 <input type="radio" onChange={(event) => dispatch({type:"setChartType", value: event.target.value })} name="chart" value="pie" /><img src={piePng} alt="Pie" /><br />
                 <input type="radio" onChange={(event) => dispatch({type:"setChartType", value: event.target.value })} name="chart" value="pyramid" /><img src={pyramidPng} alt="Pyramid" /><br />
                 <input type="radio" onChange={(event) => dispatch({type:"setChartType", value: event.target.value })} name="chart" value="bar" /><img src={areaPng} alt="area" /><br />
